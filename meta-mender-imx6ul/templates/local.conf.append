@@ -1,0 +1,95 @@
+
+# Appended fragment from meta-mender-community/meta-mender-nxp/templates
+# Supported machine is:
+#    - imx6ulevk
+#
+
+# Use separate dir for downloads and cache (for speed up successive builds)
+# Replace '~/' with your 'home' directory (Yocto does not expand ~/)
+# DL_DIR = "~/.yocto/warrior/downloads/"
+# SSTATE_DIR = "~/.yocto/warrior/sstate-cache"
+
+# REQUIRED CONFIGURATION:
+# The name of the image or update that will be built
+# This is what the device will report that it is running
+# and different updates must have different names
+MENDER_ARTIFACT_NAME = "release-1"
+
+DISTRO_FEATURES_append = " systemd"
+VIRTUAL-RUNTIME_init_manager = "systemd"
+DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
+VIRTUAL-RUNTIME_initscripts = ""
+
+# Uncomment appropriate kernel version
+# Linux kernel version: 4.9
+# PREFERRED_PROVIDER_virtual/kernel = "linux-fslc-imx"
+
+# Linux kernel version: 4.19
+PREFERRED_PROVIDER_virtual/kernel = "linux-imx"
+
+# MENDER_FEATURES settings and the inherit of mender-full
+INHERIT += "mender-full"
+
+# Setting kernel load address to kernel_addr_r variable for mender. See more at,
+# https://docs.mender.io/system-updates-yocto-project/variables#mender_uboot_pre_setup_commands
+MENDER_UBOOT_PRE_SETUP_COMMANDS = "setenv kernel_addr_r \${loadaddr}"
+
+# OPTIONAL CONFIGURATION:
+
+# Setting Mender client version
+# Default client for warrior is Mender 2.2
+# Uncomment out the following line to build 2.3
+# PREFERRED_VERSION_pn-mender = "2.3.%"
+
+# Build for Hosted Mender
+#
+# To get your tenant token:
+#    - log in to https://hosted.mender.io
+#    - click your email at the top right and then "My organization"
+#    - press the "COPY TO CLIPBOARD"
+#    - assign content of clipboard to MENDER_TENANT_TOKEN
+#
+# MENDER_SERVER_URL = "https://hosted.mender.io"
+# MENDER_TENANT_TOKEN = ""
+
+# Build for Mender demo server
+#
+# https://docs.mender.io/getting-started/on-premise-installation/create-a-test-environment
+#
+# Uncomment below and update IP address to match the machine running the
+# Mender demo server
+#MENDER_DEMO_HOST_IP_ADDRESS = "192.168.0.100"
+
+# The storage device holding all partitions
+# See https://docs.mender.io/2.3/devices/yocto-project/partition-configuration#configuring-storage
+# for more information
+MENDER_STORAGE_DEVICE = "/dev/mmcblk1"
+
+# This sets the offset where the bootloader should be placed,
+# counting from the start of the storage medium
+# The offset is specified in units of 512-byte sectors
+MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET = "2"
+
+# File to be written directly into the boot sector
+MENDER_IMAGE_BOOTLOADER_FILE = "u-boot.imx"
+
+# See https://docs.mender.io/2.3/artifacts/yocto-project/image-configuration/features
+# for details
+MENDER_FEATURES_ENABLE_append = " mender-uboot mender-image-sd"
+
+# Disabling mender's data grow service (extend the image to fully occupy SD card)
+# Disable the UEFI image
+MENDER_FEATURES_DISABLE_append = " \
+    mender-growfs-data \
+    mender-grub \
+    mender-image-uefi \
+    "
+
+# Removing wic images, as we don't use those
+# wic images won't contain mender partition
+# bmap images are not useful in our context
+IMAGE_FSTYPES_remove = "wic.gz wic.bmap mender.bmap sdimg.bmap"
+
+# Disabling boot partition from mender image
+# Mender use rootfs /boot to store and boot kernel & DTBs
+MENDER_BOOT_PART_SIZE_MB = "0"

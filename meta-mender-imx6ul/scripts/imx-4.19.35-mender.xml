@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+    <default sync-j="2" />
+
+    <remote fetch="git://git.yoctoproject.org" name="yocto" />
+    <remote fetch="git://github.com/Freescale" name="community" />
+    <remote fetch="git://github.com/openembedded" name="oe" />
+    <remote fetch="git://github.com/OSSystems" name="OSSystems" />
+    <remote fetch="git://github.com/TimesysGit" name="Timesys" />
+    <remote fetch="https://source.codeaurora.org/external/imx" name="CAF" />
+    <remote fetch="https://github.com/mendersoftware" name="Mender" />
+    <remote fetch="https://github.com/danie007" name="Jasmin" />
+
+    <project remote="yocto" revision="6d2e12e79211b31cdf5ea824fb9a8be54ba9a9eb" name="poky" path="sources/poky" />
+    <project remote="yocto" revision="2142f7ded1b3115ccc21f7575fd83e2376247193" name="meta-freescale" path="sources/meta-freescale" />
+
+    <project remote="oe" revision="3bdbf72e3a4bf18a4a2c7afbde4f7ab773aeded9" name="meta-openembedded" path="sources/meta-openembedded" />
+
+    <project remote="community" revision="fd027d8380cf53beabb6d19db3c4f9c36180ce1c" name="fsl-community-bsp-base" path="sources/base" />
+
+    <project remote="community" revision="da422478d38e744283bcf61123c4a526396c7030" name="meta-freescale-3rdparty" path="sources/meta-freescale-3rdparty" />
+    <project remote="community" revision="d4e77ea682fa10d0d54a723b3d3099c44fc5e95c" name="meta-freescale-distro" path="sources/meta-freescale-distro" />
+
+    <project remote="CAF" revision="7be4f76aa001a5ab2ff40d779ac89a98f7a381ac" name="meta-fsl-bsp-release" path="sources/meta-fsl-bsp-release" upstream="warrior-4.19.35-1.1.0">
+        <linkfile src="imx/README" dest="README-IMXBSP" />
+    </project>
+
+    <project remote="Mender" revision="warrior" name="meta-mender" path="sources/meta-mender" />
+
+    <project remote="Jasmin" revision="warrior" name="meta-mender-community" path="sources/meta-mender-community">
+        <linkfile src="meta-mender-imx6ul/README.md" dest="README" />
+        <linkfile src="meta-mender-imx6ul/scripts/setup-mender-environment.sh" dest="setup-mender-environment" />
+    </project>
+
+</manifest>
