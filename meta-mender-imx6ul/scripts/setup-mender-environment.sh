@@ -7,7 +7,7 @@
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 #
-# Copyright (C) 2020 Jasmin Infotech.
+# Copyright (C) 2020 BGNetworks.
 
 CWD=$(pwd)
 PROGNAME="setup-mender-environment"
