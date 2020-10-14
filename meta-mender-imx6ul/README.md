@@ -21,7 +21,7 @@ See the i.MX Yocto Project User's Guide for instructions on installing repo.
 1. Install the i.MX Linux BSP & mender repo
 
 ```bash
-repo init -u https://github.com/danie007/meta-mender-community \
+repo init -u https://github.com/bgnetworks/meta-mender-community \
           -m meta-mender-imx6ul/scripts/imx-4.19.35-mender.xml \
           -b warrior
 ```
@@ -47,6 +47,7 @@ where
 After this your system will be configured to start a Yocto Project build.
 
 ## Build images
+
 #### Building Frame Buffer (FB)
 
 ```bash
@@ -60,9 +61,9 @@ bitbake core-image-base
 
 To contribute to the development of this BSP and/or submit patches for new boards please send the patches as bellow:
 
-- meta-mender-imx6ul: base build system and metadata  
-  Path: sources/meta-mender-imx6ul  
-  GIT: https://github.com/danie007/meta-mender-imx6ul.git
+- meta-mender-community: base build system and metadata  
+  Path: sources/meta-mender-community  
+  GIT: https://github.com/bgnetworks/meta-mender-community.git
 
 ## Maintainer
 
