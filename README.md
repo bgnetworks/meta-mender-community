@@ -7,7 +7,17 @@ Author: Daniel Selvan D.
 Organisation: Jasmin Infotech Pvt. Ltd
 
 Date: 07.08.2020
+Edited on 14.10.2020
 -->
+
+This repository contains mender integration files for NXP's i.MX evaluation kits. Currently this supports i.MX 6UL EVK and i.MX 8MM is planned.
+
+Expand the following section to know more.
+
+<details>
+<summary>
+meta-mender-imx6ul
+</summary>
 
 # Board description
 
@@ -425,3 +435,13 @@ On the other hand, if you already have Mender running on your device and want to
 # Known issues
 
 - Network not starting on boot for `core-image-base` build, to fix refer [Mender Tutorial - How to configure networking using systemd in Yocto Project](https://hub.mender.io/t/how-to-configure-networking-using-systemd-in-yocto-project/1097)
+</details>
+
+<details>
+<summary>meta-mender-imx8mm</summary>
+
+# TODO:
+
+**Add i.MX 8MM repo and integration doc**
+
+</details>
